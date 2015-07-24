@@ -30,7 +30,7 @@ module.exports = {
             {
                 test: /\.less$/,
                 include: /app/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+                loader: ExtractTextPlugin.extract('css?sourceMap!' + 'less?sourceMap')
             },
         ]
     }
