@@ -4,7 +4,7 @@
 'use strict'
 import React from "react";
 import Greeting from '../../greeting';
-import './mainView.less';
+//import './mainView.less';
 
 export default React.createClass({
     render: () => {

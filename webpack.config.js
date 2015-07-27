@@ -25,12 +25,13 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                include: /app/,
                 loader: "style!css"
             },
             {
                 test: /\.less$/,
                 include: /app/,
-                loader: ExtractTextPlugin.extract('css?sourceMap!less?sourceMap')
+                loader: ExtractTextPlugin.extract('style!css?sourceMap!less?sourceMap')
             },
             {
                 test: /\.json$/,

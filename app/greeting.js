@@ -9,7 +9,7 @@ export default React.createClass({
         require('./less/styles.less');
 
         return (
-            <div className="lessStyle">Hello from react</div>
+            <div className="lessStyle">This is the Greeting test component</div>
         );
     }
 })
