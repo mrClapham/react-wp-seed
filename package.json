@@ -4,7 +4,8 @@
   "description": "Open Fin Inter App Messaging demo",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+      "build": "webpack && node server.js"
   },
   "author": "Graham Clapham",
   "license": "MIT",
@@ -24,6 +25,7 @@
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.4",
     "jasmine-core": "^2.3.4",
+    "json-loader": "^0.5.2",
     "jspm": "^0.15.7",
     "karma": "^0.13.3",
     "karma-chrome-launcher": "^0.2.0",
