@@ -6,8 +6,10 @@ import React from "react";
 
 export default React.createClass({
     render: function(){
+        require('./less/styles.less');
+
         return (
-            <div className="output">Hello from react</div>
+            <div className="lessStyle">Hello from react</div>
         );
     }
 })

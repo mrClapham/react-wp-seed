@@ -3,8 +3,8 @@
  */
 import _ from "lodash";
 import React from "react";
-import Greeting from "./greeting";
-
+import MainView from './modules/view/mainView'
+import getJson from './modules/services/getJson.js'
 
 if (window.addEventListener) {
     window.addEventListener('DOMContentLoaded', run);
@@ -12,13 +12,23 @@ if (window.addEventListener) {
     window.attachEvent('onload', run);
 }
 
+function handleData(d){
+    "use strict";
+    console.log(d)
+}
 
 function run(){
     "use strict";
+
+
+// --main.js--
+    getJson("http://www.example.com", data => {
+        handleData(data);
+});
+
+
     React.render(
-        <Greeting name="World"/>,
+        <MainView />,
         document.getElementById('contentholder')
     );
 }
-
-console.log("Hello World...");
