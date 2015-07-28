@@ -11,6 +11,14 @@ function getJSON(url, callback) {
     xhr.send();
 }
 
+function getJsonPromise(url){
+    "use strict";
+    return new Promise(function pr(resolve, reject){
+
+    })
+
+}
+
 export function loadJson(url, callback) {
     getJSON(url, data => callback(JSON.parse(data)));
 }

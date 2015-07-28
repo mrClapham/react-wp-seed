@@ -31,7 +31,9 @@ module.exports = {
             {
                 test: /\.less$/,
                 include: /app/,
+               // loader: ExtractTextPlugin.extract("style!css!less")
                 loader: "style!css!less"
+
             },
             {
                 test: /\.json$/,

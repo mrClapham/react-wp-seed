@@ -36,18 +36,19 @@
     "less": "^2.5.1",
     "less-loader": "^2.2.0",
     "rimraf": "^2.4.2",
-    "rx": "^2.5.3",
     "style-loader": "^0.12.3",
-    "thundercats": "^2.0.0",
     "url-loader": "^0.5.6",
     "webpack": "^1.10.5"
   },
   "dependencies": {
-    "express": "^4.13.1",
-    "gulp": "^3.9.0",
-    "lodash": "^3.10.0",
-    "openfin-config-builder": "^1.0.8",
-    "openfin-launcher": "^0.2.0",
-    "react": "^0.13.3"
+      "thundercats": "^2.0.0",
+      "key-mirror": "^1.0.0",
+      "rx": "^2.5.3",
+      "express": "^4.13.1",
+      "gulp": "^3.9.0",
+      "lodash": "^3.10.0",
+      "openfin-config-builder": "^1.0.8",
+      "openfin-launcher": "^0.2.0",
+      "react": "^0.13.3"
   }
 }
