@@ -15,8 +15,7 @@ export function loadJson(url, callback) {
     getJSON(url, data => callback(JSON.parse(data)));
 }
 
-//// --main.js--
-//import { getUsefulContents } from "file.js";
-//getUsefulContents("http://www.example.com", data => {
-//    doSomethingUseful(data);
-//});
+export function sayHello(){
+    "use strict";
+    console.log("Say Hello......");
+}

@@ -3,9 +3,8 @@
  */
 import _ from "lodash";
 import React from "react";
-import MainView from './modules/view/mainView'
-
-//import loadJson from './modules/services/getJson.js'
+import MainView from './modules/view/mainView';
+import {sayHello, loadJson} from './modules/services/getJson';
 
 if (window.addEventListener) {
     window.addEventListener('DOMContentLoaded', run);
@@ -20,12 +19,13 @@ function handleData(d){
 
 function run(){
     "use strict";
+    sayHello();
+    //loadJson();
+    require ("./less/styles.less");
 
-
-// --main.js--
-//    getJson("10000.json", data => {
-//        handleData(data);
-//});
+    loadJson("data/10000.json", data => {
+        handleData(data);
+    });
 
 
     React.render(

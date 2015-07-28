@@ -43,6 +43,11 @@ gulp.task('copyIco', function() {
         .pipe(gulp.dest('dist'));
 });
 
+gulp.task('copyData', function() {
+    gulp.src('app/data/**')
+        .pipe(gulp.dest('dist/data'));
+});
+
 gulp.task("webpack", function(callback) {
     // run webpack
     webpack({
@@ -56,5 +61,5 @@ gulp.task("webpack", function(callback) {
     });
 });
 
-gulp.task('build', ['copyIco', 'webpack']);
+gulp.task('build', ['copyIco', 'copyData', 'webpack']);
 gulp.task('default', ['openfin']);
