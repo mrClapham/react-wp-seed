@@ -15,7 +15,4 @@ export function loadJson(url, callback) {
     getJSON(url, data => callback(JSON.parse(data)));
 }
 
-export function sayHello(){
-    "use strict";
-    console.log("Say Hello......");
-}
+

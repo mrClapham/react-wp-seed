@@ -1,7 +1,7 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
     entry: {javascript: "./app/main.js",
-            html: "./app/index.html"
+            html: "./app/index.html",
     },
     output: {
         path: __dirname + "/dist",
@@ -31,7 +31,7 @@ module.exports = {
             {
                 test: /\.less$/,
                 include: /app/,
-                loader: ExtractTextPlugin.extract('style!css?sourceMap!less?sourceMap')
+                loader: "style!css!less"
             },
             {
                 test: /\.json$/,

@@ -4,7 +4,9 @@
 import _ from "lodash";
 import React from "react";
 import MainView from './modules/view/mainView';
-import {sayHello, loadJson} from './modules/services/getJson';
+import {loadJson} from './modules/services/getJson';
+import { Actions } from 'thundercats';
+require  ("./less/styles.less");
 
 if (window.addEventListener) {
     window.addEventListener('DOMContentLoaded', run);
@@ -19,14 +21,10 @@ function handleData(d){
 
 function run(){
     "use strict";
-    sayHello();
-    //loadJson();
-    require ("./less/styles.less");
 
     loadJson("data/10000.json", data => {
         handleData(data);
     });
-
 
     React.render(
         <MainView />,

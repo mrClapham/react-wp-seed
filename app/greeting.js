@@ -6,10 +6,8 @@ import React from "react";
 
 export default React.createClass({
     render: function(){
-        require('./less/styles.less');
-
         return (
-            <div className="lessStyle">This is the Greeting test component</div>
+            <div className="component-style">This is the Greeting test 123sdds...</div>
         );
     }
 })

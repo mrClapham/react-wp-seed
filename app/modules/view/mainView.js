@@ -7,7 +7,7 @@ import Greeting from '../../greeting';
 
 export default React.createClass({
     render: () => {
-        require ('./mainView.less');
+        //require ('./mainView.less');
 
         return (
             <div className="main-view">
