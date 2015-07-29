@@ -20,26 +20,11 @@ export default React.createClass({
         //--
         console.log('1. Main View componentDidMount')
         var _result =  this.props.data
-            .map(function(d,i){
-                return d.Symbol+", ";
-            })
-            .reduce(function(acc, nw){
-                return acc + nw;
-            })
-            .subscribe( this._myOnNext,  this._myError,  this._myComplete );
     },
     componentWillReceiveProps:function(newVal){
         //--
         console.log('2. Main View componentWillReceiveProps')
-        //this.render()
-    },
-    _myOnNext:function(v){
-        this.setState({'filteredData': v});
-        console.log("_myOnNext", v)
-    },
-    _myError:function(err){ console.log("_myError", err) },
-    _myComplete:function(){
-        console.log("_myComplete",e)
+        this.render()
     },
     getDataCells:function(){
          console.log( this.props.data);
@@ -55,19 +40,31 @@ export default React.createClass({
         return <h1>Hello I am a data cell </h1>
     },
     render: function(){
-
+        var __data = this.props.data;
+        console.log(__data)
         return (
             <div className="main-view">
-                <h1>Hello from the main view</h1>
-                <h2>{this.state.filteredData}</h2>
+                <greeting />
+
+                <h1>Hello from the main view...</h1>
+                { __data.map(function(d,i){
+                    return (<DataCell key={i} data={d} />)
+                    })
+                }
             </div>
         )
     }
 });
 //
-var dataCell = React.createClass({
+var DataCell = React.createClass({
+    getInitialState:function(){
+        return {default:"default"};
+    },
+    getDefaultProps: function(){
+        return {title:"default title ..."}
+    },
     render: function(){
-        return <h2>Hello</h2>
+        return <h2>{this.props.title} {this.props.data.CompanyName}</h2>
     }
 })
 

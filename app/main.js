@@ -34,19 +34,8 @@ var _myError     = (v) => { console.log("_myError", v) };
 var _myComplete  = () => { console.log("_myComplete") };
 
 function handleData(d){
-    _dataObservable = RX.Observable.from(d);
-
-   //var _result =  _dataObservable
-   //     .map(function(d,i){
-   //         return d.Symbol+", ";
-   //     })
-   //     .reduce(function(acc, nw){
-   //         return acc + nw;
-   //     })
-   //     .subscribe( _myOnNext, _myError, _myComplete );
-
     React.render(
-        <MainView data={_dataObservable} />,
+        <MainView data={d} />,
         document.getElementById('contentholder')
     );
 }
@@ -59,7 +48,7 @@ function getFilteredData(){
 }
 
 function run(){
-    loadJson("data/10.json", data => {
+    loadJson("data/10000.json", data => {
         handleData(data);
     });
 

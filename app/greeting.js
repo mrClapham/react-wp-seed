@@ -5,6 +5,9 @@
 import React from "react";
 
 export default React.createClass({
+    componentDidMount:function(){
+        console.log("Greeting - componentDidMount")
+    },
     render: function(){
         return (
             <div className="component-style">This is the Greeting test 123sdds...</div>
