@@ -10,7 +10,7 @@ export default React.createClass({
         return {};
     },
     getDefaultProps: function(){
-        return {data:[1,2,3]}
+        return {}
     },
     componentWillMount:function(){
         //--
@@ -19,6 +19,12 @@ export default React.createClass({
     componentDidMount:function(){
         //--
         console.log('1. Main View componentDidMount')
+            this.props.data.subscribe(function(d,i){
+                },
+                function(err){console.log("onError")},
+                function(){console.log("on Compete")}
+            );
+
     },
     componentWillReceiveProps:function(newVal){
         //--
@@ -27,11 +33,15 @@ export default React.createClass({
     },
     render: function(){
         //require ('./mainView.less');
-        console.log(this.props.data[0]);
         return (
             <div className="main-view">
                 <h1>Hello from the main view</h1>
                <Greeting name="World"/>
+                {
+                    this.props.data.map(function(d,i){
+                            return (<p>{d.Symbol}</p>)
+                        })
+                }
             </div>
         )
     }

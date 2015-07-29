@@ -28,33 +28,10 @@ if (window.addEventListener) {
 function handleData(d){
     _dataObservable = RX.Observable.from(d);
 
-    _dataObservable
-        .filter(function(d,i){
-            return d.Group === _dataGroup;
-        })
-        .subscribe(function(res){
-            //console.log("SUB +> ", res);
-            React.render(
-                <MainView data={d} />,
-                document.getElementById('contentholder')
-            );
-        })
-
-    //console.log( _dataObservable.filter(function(d,i){ return d.Group == 1; } ));
-
-    _dataSubscription = _dataObservable.subscribe(
-                                                    function(d){
-                                                        //React.render(
-                                                        //    <MainView data={d} />,
-                                                        //    document.getElementById('contentholder')
-                                                        //);
-                                                    },
-                                                    function(err){
-                                                        console.log(err)
-                                                    },
-                                                    function(){
-                                                        //console.log('done ')
-                                                    });
+    React.render(
+        <MainView data={_dataObservable} />,
+        document.getElementById('contentholder')
+    );
 }
 
 //////////////////
@@ -63,8 +40,6 @@ function getFilteredData(){
         return d.Group === 1;
     });
 }
-
-
 
 function run(){
     loadJson("data/10000.json", data => {
