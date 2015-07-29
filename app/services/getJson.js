@@ -16,7 +16,6 @@ function getJsonPromise(url){
     return new Promise(function pr(resolve, reject){
 
     })
-
 }
 
 export function loadJson(url, callback) {

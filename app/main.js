@@ -11,7 +11,13 @@ import { Actions } from 'thundercats';
 
 require  ("./less/styles.less");
 var RX =  require("rx");
-var _dataObservable, _dataSubscription;
+
+var _dataObservable,
+    _dataSubscription,
+    _dataGroup = 1,
+    _dataStart = 0,
+    _dataEnd = 100,
+    _restrict=100;
 
 if (window.addEventListener) {
     window.addEventListener('DOMContentLoaded', run);
@@ -20,21 +26,53 @@ if (window.addEventListener) {
 }
 
 function handleData(d){
-    _dataObservable = RX.Observable.fromArray(d);
-    _dataSubscription = _dataObservable.subscribe(function(x){console.log(x)}, function(err){console.log(err)},function(){console.log('done ')})
+    _dataObservable = RX.Observable.from(d);
+
+    _dataObservable
+        .filter(function(d,i){
+            return d.Group === _dataGroup;
+        })
+        .subscribe(function(res){
+            //console.log("SUB +> ", res);
+            React.render(
+                <MainView data={d} />,
+                document.getElementById('contentholder')
+            );
+        })
+
+    //console.log( _dataObservable.filter(function(d,i){ return d.Group == 1; } ));
+
+    _dataSubscription = _dataObservable.subscribe(
+                                                    function(d){
+                                                        //React.render(
+                                                        //    <MainView data={d} />,
+                                                        //    document.getElementById('contentholder')
+                                                        //);
+                                                    },
+                                                    function(err){
+                                                        console.log(err)
+                                                    },
+                                                    function(){
+                                                        //console.log('done ')
+                                                    });
 }
 
+//////////////////
 function getFilteredData(){
-    return _dataObservable
+    return _dataObservable.filter(function(d,i){
+        return d.Group === 1;
+    });
 }
+
+
 
 function run(){
     loadJson("data/10000.json", data => {
         handleData(data);
     });
 
-    React.render(
-        <MainView data={getFilteredData()} />,
-        document.getElementById('contentholder')
-    );
+    //React.render(
+    //    <MainView data={getFilteredData()} />,
+    //    document.getElementById('contentholder')
+    //);
 }
