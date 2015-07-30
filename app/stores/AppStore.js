@@ -8,7 +8,10 @@ import Actions from '../actions/AppActions'
 
 const AppStore = Reflux.createStore({
     listenables:[Actions],
-    _data:{randNum:10},
+    _data:{
+        randNum:10,
+        companyData:[]
+    },
     getRandNum:function(){return this._data.randNum},
     init:function(){
         //this.listenTo(Actions.testAction1, this.callback1);
@@ -18,12 +21,7 @@ const AppStore = Reflux.createStore({
         this._data.randNum = Math.random()* 200 + "  -- "+payload;
         this.trigger({rand:this._data.randNum});
     },
-    //testAction1:function(){
-    //    console.log("TestAction 1 from store");
-    //},
-    //testAction2:function(){
-    //    console.log("TestAction 2")
-    //}
+
 });
 
 export default AppStore;

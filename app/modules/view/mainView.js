@@ -38,7 +38,6 @@ export default React.createClass({
         this.render()
     },
     getDataCells:function(){
-         console.log( this.props.data);
          var sub = this.props.data
             .subscribe(function(x){
                 var _symbol = x.Symbol
@@ -55,7 +54,6 @@ export default React.createClass({
     },
     render: function(){
         var __data = this.props.data;
-        console.log(__data)
         return (
             <div className="main-view">
                 <Greeting />
@@ -75,10 +73,47 @@ var DataCell = React.createClass({
         return {default:"default"};
     },
     getDefaultProps: function(){
-        return {title:"default title ..."}
+        return {"Group":1,
+            "Symbol":"ABB",
+            "CompanyName":"ABB Shs Sponsored American Deposit Receipt Repr 1 Sh",
+            "Open":21.9,
+            "Close":0,
+            "PreviousClose":21.77,
+            "PreviousCloseDate":"2015-05-20",
+            "High":21.99,
+            "Low":21.86,
+            "Last":21.97,
+            "Change":0.2,
+            "PercentChange":0.919,
+            "Volume":95977,
+            "Bid":21.97,
+            "Ask":21.98,
+            "Spread":0.01,
+            "BidQuantity":5170,
+            "AskQuantity":1900,
+            "DT":"2015-05-21T11:14:58.005"}
     },
     render: function(){
-        return <h2>{this.props.title} {this.props.data.CompanyName}</h2>
+        return <div className='data-cell'>
+            {this.props.title} <br />
+            Name: {this.props.data.CompanyName} <br />
+            Open: {this.props.data.Open} <br />
+            Close: {this.props.data.Close} <br />
+            PreviousClose: {this.props.data.PreviousClose} <br />
+            PreviousCloseDate {this.props.data.PreviousCloseDate} <br />
+            High: {this.props.data.High} <br />
+            Low: {this.props.data.Low} <br />
+            Last: {this.props.data.Last} <br />
+            Change: {this.props.data.Change} <br />
+            Volume: {this.props.data.Volume} <br />
+            PercentChange: {this.props.data.PercentChange} <br />
+            Bid: {this.props.data.Bid} <br />
+            Ask: {this.props.data.Ask} <br />
+            Spread: {this.props.data.Spread} <br />
+            BidQuantity: {this.props.data.BidQuantity} <br />
+            AskQuantity: {this.props.data.AskQuantity} <br />
+            DT: {this.props.data.DT} <br />
+        </div>
     }
-})
+});
 

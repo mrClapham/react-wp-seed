@@ -3,6 +3,7 @@
  */
 var gulp = require('gulp'),
     gutil = require("gulp-util"),
+    exec = require("gulp-exec"),
     webpack = require("webpack"),
     webpackConfig = require('./webpack.config'),
     openfinConfigBuilder = require('openfin-config-builder'),
@@ -47,6 +48,14 @@ gulp.task('copyData', function() {
     gulp.src('app/data/**')
         .pipe(gulp.dest('dist/data'));
 });
+
+gulp.task('server', function (cb) {
+    exec('node server.js', function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
+})
 
 gulp.task("webpack", function(callback) {
     // run webpack
