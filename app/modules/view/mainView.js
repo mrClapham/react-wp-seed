@@ -3,11 +3,17 @@
  */
 'use strict'
 import React from "react";
+import Reflux from 'reflux';
 import Greeting from '../../greeting';
+import AppActions from '../../actions/AppActions';
+import AppStore from '../../stores/AppStore';
+
+console.log(" AppStore ", AppStore);
 
 export default React.createClass({
+    mixins:[Reflux.connect(AppStore)],
     getInitialState:function(){
-        return {filteredData:"empty data"};
+        return {filteredData:"empty data", rand:AppStore.getRandNum()};
     },
     getDefaultProps: function(){
         return {}
@@ -16,10 +22,15 @@ export default React.createClass({
         //--
         console.log('0. Main View componentWillMount')
     },
+    componentWillUnmount: function() {
+        this.unsubscribe();
+    },
     componentDidMount:function(){
         //--
-        console.log('1. Main View componentDidMount')
-        var _result =  this.props.data
+        console.log('1. Main View componentDidMount --- ')
+        this.unsubscribe = AppStore.listen(function(status) {
+            console.log('status: ', status);
+        });
     },
     componentWillReceiveProps:function(newVal){
         //--
@@ -39,14 +50,17 @@ export default React.createClass({
 
         return <h1>Hello I am a data cell </h1>
     },
+    onTestClick:function(){
+        AppActions.testAction1(Math.random()*200);
+    },
     render: function(){
         var __data = this.props.data;
         console.log(__data)
         return (
             <div className="main-view">
-                <greeting />
-
-                <h1>Hello from the main view...</h1>
+                <Greeting />
+                <button onClick={this.onTestClick}>Click me.</button>
+                <h1>Hello from the main view...{this.state.rand}</h1>
                 { __data.map(function(d,i){
                     return (<DataCell key={i} data={d} />)
                     })

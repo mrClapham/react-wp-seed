@@ -7,10 +7,10 @@ import _ from "lodash";
 import React from "react";
 import MainView from './modules/view/mainView';
 import {loadJson} from './services/getJson';
-import { Actions } from 'thundercats';
+import Actions from './actions/AppActions.js';
+
 
 require  ("./less/styles.less");
-var RX =  require("rx");
 
 var _dataObservable,
     _dataSubscription,
@@ -25,13 +25,6 @@ if (window.addEventListener) {
     window.attachEvent('onload', run);
 }
 
-/*
-
- */
-
-var _myOnNext    = (v) => { console.log("_myOnNext", v) };
-var _myError     = (v) => { console.log("_myError", v) };
-var _myComplete  = () => { console.log("_myComplete") };
 
 function handleData(d){
     React.render(
@@ -40,20 +33,10 @@ function handleData(d){
     );
 }
 
-//////////////////
-function getFilteredData(){
-    return _dataObservable.filter(function(d,i){
-        return d.Group === 1;
-    });
-}
 
 function run(){
     loadJson("data/10000.json", data => {
         handleData(data);
     });
 
-    //React.render(
-    //    <MainView data={getFilteredData()} />,
-    //    document.getElementById('contentholder')
-    //);
 }
