@@ -8,7 +8,7 @@ import React from "react";
 import MainView from './modules/view/mainView';
 import {loadJson} from './services/getJson';
 import Actions from './actions/AppActions.js';
-
+import Bootstrap from './modules/openfin/openfinBootstrap.js';
 
 require  ("./less/styles.less");
 
@@ -25,7 +25,6 @@ if (window.addEventListener) {
     window.attachEvent('onload', run);
 }
 
-
 function handleData(d){
     React.render(
         <MainView data={d} />,
@@ -33,9 +32,8 @@ function handleData(d){
     );
 }
 
-
 function run(){
-    loadJson("data/10000.json", data => {
+    loadJson("data/10.json", data => {
         handleData(data);
     });
 

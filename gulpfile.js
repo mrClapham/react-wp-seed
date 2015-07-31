@@ -87,6 +87,11 @@ gulp.task('copyData', function() {
         .pipe(gulp.dest('dist/data'));
 });
 
+gulp.task('copyAppJson', function() {
+    gulp.src('app/*.json')
+        .pipe(gulp.dest('dist'));
+});
+
 gulp.task('server', function () {
     nodemon({
         script: 'server.js'
@@ -94,14 +99,6 @@ gulp.task('server', function () {
         , env: { 'NODE_ENV': 'development' }
     })
 })
-
-
-
-
-
-
-
-
 
 
 gulp.task("webpack", function(callback) {
@@ -117,5 +114,5 @@ gulp.task("webpack", function(callback) {
     });
 });
 
-gulp.task('build', ['copyIco', 'copyData', 'webpack']);
-gulp.task('default', ['openfin']);
+gulp.task('build', ['copyIco', 'copyData', 'copyAppJson', 'webpack', 'server']);
+gulp.task('default', ['build', 'openfin']);
