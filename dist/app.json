@@ -3,8 +3,8 @@
     "startup_app": {
         "name": "staging_app",
         "description": "OpenFin POC",
-        "url": "http://openfin.co",
-        "uuid": "interAppMessagingPoC-96hz4oeik5fusor",
+        "url": "http://localhost:5015",
+        "uuid": "interAppMessagingPoC-lmdc4epie019k9",
         "autoShow": true
     },
     "runtime": {
