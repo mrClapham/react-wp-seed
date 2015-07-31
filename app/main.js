@@ -10,6 +10,7 @@ import {loadJson} from './services/getJson';
 import Actions from './actions/AppActions.js';
 import Bootstrap from './modules/openfin/openfinBootstrap.js';
 
+
 require  ("./less/styles.less");
 
 var _dataObservable,
@@ -30,6 +31,7 @@ function handleData(d){
         <MainView data={d} />,
         document.getElementById('contentholder')
     );
+
 }
 
 function run(){

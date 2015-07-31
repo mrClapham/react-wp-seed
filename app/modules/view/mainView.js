@@ -8,8 +8,6 @@ import Greeting from '../../greeting';
 import AppActions from '../../actions/AppActions';
 import AppStore from '../../stores/AppStore';
 
-console.log(" AppStore ", AppStore);
-
 export default React.createClass({
     mixins:[Reflux.connect(AppStore)],
     getInitialState:function(){

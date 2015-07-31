@@ -21,7 +21,6 @@ const AppStore = Reflux.createStore({
         this._data.randNum = Math.random()* 200 + "  -- "+payload;
         this.trigger({rand:this._data.randNum});
     },
-
 });
 
 export default AppStore;

@@ -13,44 +13,49 @@ var gulp = require('gulp'),
     openfinLauncher = require('openfin-launcher'),
     q = require('q');
 
-
+    /*
+        Creates the config file which launches the app.
+        It is copied to the 'dist' directory which is the root of the app
+        and served up via the node server.
+     */
 function createConfig() {
     return openfinConfigBuilder.create({
-        startup_app: {
-            name: 'interAppMessagingPoC',
-            url: 'http://openfin.co'
+
+        "devtools_port": 9090,
+        "startup_app": {
+            "name": "staging_app",
+            "description": "OpenFin POC",
+            "url": "http://localhost:5015",
+            "uuid": "interAppMessagingPoC-lmdc4epie019k9",
+            "autoShow": true
+        },
+        "runtime": {
+            "arguments": "",
+            "version": "beta"
+        },
+        "shortcut": {
+            "company": "OpenFin",
+            "description": "Openfin POC",
+            "name": "Openfin POC"
         }
-    }, 'app.json');
-}
 
-function updateConfig() {
-    return openfinConfigBuilder.update({
-        startup_app: {
-            name: 'staging_app'
-        }
-    }, 'app.json');
+    }, 'dist/app.json');
 }
-
-function launchOpenfin () {
-    return openfinLauncher.launchOpenFin({
-        configPath: 'file:/' + path.resolve('app.json')
-    });
-}
-
+/* Starts up theNode server - returning a promise so it may be chained in the 'openfin' task. */
 function startServer(){
     var defered = q.defer();
 
     var _resolve = function(){
-        "use strict";
-        return defered.resolve()
+         defered.resolve()
     }
-
-    var _to = setTimeout(_resolve, 10000);
 
     nodemon({
         script: 'server.js'
         , ext: 'js html'
         , env: { 'NODE_ENV': 'development' }
+        , events: {
+            "start": _resolve()
+        }
     });
     return defered.promise;
 }
@@ -70,13 +75,6 @@ function openfinLaunchServer() {
         });
 }
 
-gulp.task('openfin', function() {
-    return createConfig()
-        .then(updateConfig)
-        .then(startServer)
-        .then(openfinLaunchServer);
-});
-
 gulp.task('copyIco', function() {
     gulp.src('app/favicon.ico')
         .pipe(gulp.dest('dist'));
@@ -89,7 +87,7 @@ gulp.task('copyData', function() {
 
 gulp.task('copyAppJson', function() {
     gulp.src('app/*.json')
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/data'));
 });
 
 gulp.task('server', function () {
@@ -97,8 +95,10 @@ gulp.task('server', function () {
         script: 'server.js'
         , ext: 'js html'
         , env: { 'NODE_ENV': 'development' }
-    })
+    });
 })
+
+
 
 
 gulp.task("webpack", function(callback) {
@@ -114,5 +114,13 @@ gulp.task("webpack", function(callback) {
     });
 });
 
-gulp.task('build', ['copyIco', 'copyData', 'copyAppJson', 'webpack', 'server']);
+/* THIS IS THE MAIN CALL TO LAUNCH THE OPENFIN APP. */
+
+gulp.task('openfin', function() {
+    return createConfig()
+        .then(startServer)
+        .then(openfinLaunchServer);
+});
+
+gulp.task('build', ['copyIco', 'copyData', 'webpack']);
 gulp.task('default', ['build', 'openfin']);

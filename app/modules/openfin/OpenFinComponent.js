@@ -1,11 +1,14 @@
 /**
+ * Created by grahamclapham on 31/07/15.
+ */
+/**
  * Created by grahamclapham on 27/07/15.
  */
 'use strict'
 import React from "react";
 import Reflux from 'reflux';
 
-var InterAppMessanging =  React.createClass({
+var OpenFinComponent =  React.createClass({
     mixins:[],
     getInitialState:function(){
         return {};
@@ -44,8 +47,8 @@ var InterAppMessanging =  React.createClass({
         */
     },
     render:function(){
-        return (<p>Inter App Messanging</p>);
+        return (<p>OpenFinComponent</p>);
     }
 })
 
-export default InterAppMessanging;
+export default OpenFinComponent;
