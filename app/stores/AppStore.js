@@ -16,16 +16,13 @@ const AppStore = Reflux.createStore({
     },
     init:function(){
         this._loadData();
-        //var _dataPromise = getJsonPromise('data/10.json', this._onDataReceived, this._onDataError);
-        //console.log("Init called ", _dataPromise)
     },
     getRandNum:function(){
         return this._data.randNum
     },
     _loadData:function(){
-        getJsonPromise('data/10.json').then(this._onDataReceived);
+        getJsonPromise('data/10.json').then(this._onDataReceived, this._onDataError);
     },
-
     _onDataReceived:function(d){
         console.log("Success ",d);
         this._data.companyData = d;
@@ -37,7 +34,12 @@ const AppStore = Reflux.createStore({
     onTestAction1:function(payload){
         this._data.randNum = Math.random()* 200 + "  -- "+payload;
         this.trigger({rand:this._data.randNum});
+    },
+    // API
+    getFilteredData:function(){
+        return this._data.companyData
     }
+
 });
 
 export default AppStore;

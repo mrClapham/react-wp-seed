@@ -7,11 +7,12 @@
 'use strict'
 import React from "react";
 import Reflux from 'reflux';
+import Store from '../../stores/OpenFinStore'
 
 var OpenFinComponent =  React.createClass({
     mixins:[],
     getInitialState:function(){
-        return {};
+        return {appTitle:Store.getAppTitle()};
     },
     getDefaultProps: function(){
         return {}
@@ -47,7 +48,11 @@ var OpenFinComponent =  React.createClass({
         */
     },
     render:function(){
-        return (<p>OpenFinComponent</p>);
+        return (<div className='openfin-content'>
+            <p>OpenFinComponent: {this.state.appTitle}</p>
+            <p>OpenFin is available as you are running from within the runtime.</p>
+
+            </div>);
     }
 })
 
