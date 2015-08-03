@@ -11,10 +11,10 @@ import AppStore from '../../stores/AppStore';
 export default React.createClass({
     mixins:[Reflux.connect(AppStore)],
     getInitialState:function(){
-        return {filteredData:"empty data", rand:AppStore.getRandNum()};
+        return {data:[], filteredData:"empty data", rand:AppStore.getRandNum()};
     },
     getDefaultProps: function(){
-        return {}
+        return {data:[]}
     },
     componentWillMount:function(){
         //--
@@ -51,7 +51,7 @@ export default React.createClass({
         AppActions.testAction1(Math.random()*200);
     },
     render: function(){
-        var __data = this.props.data;
+        var __data = this.state.data;
         return (
             <div className="main-view">
                 <Greeting />

@@ -17,7 +17,7 @@ export default  (function(){
     });
 })();
 
-    /*  OpenFin is not available -
+    /*  noOpenFin() called if OpenFin is not available -
         probably because you are not running from within the runtime
     */
 

@@ -9,7 +9,7 @@ import MainView from './modules/view/mainView';
 import {loadJson} from './services/getJson';
 import Actions from './actions/AppActions.js';
 import Bootstrap from './modules/openfin/openfinBootstrap.js';
-
+import AppStore from  './stores/AppStore.js';
 
 require  ("./less/styles.less");
 
@@ -31,12 +31,17 @@ function handleData(d){
         <MainView data={d} />,
         document.getElementById('contentholder')
     );
-
 }
 
 function run(){
-    loadJson("data/10.json", data => {
-        handleData(data);
-    });
+    React.render(
+        <MainView />,
+        document.getElementById('contentholder')
+    );
+    //AppStore.init();
+
+    //loadJson("data/10.json", data => {
+    //    handleData(data);
+    //});
 
 }
