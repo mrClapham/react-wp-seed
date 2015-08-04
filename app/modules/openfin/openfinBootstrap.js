@@ -3,7 +3,7 @@
  */
 "use strict";
 import React from 'react';
-import OpenFinComponent from "../../modules/openfin/openFinComponent.js";
+import OpenFinComponent from "./openFinComponent";
 import OpenFinStore from '../../stores/OpenFinStore';
 
 export default  (function(){
