@@ -7,9 +7,6 @@ module.exports = {
         path: __dirname + "/dist",
         filename: "bundle.js"
     },
-    plugins: [
-        new ExtractTextPlugin("[name].css")
-    ],
     devtool: 'source-map',
     module: {
         loaders: [
@@ -22,24 +19,7 @@ module.exports = {
                 test: /\.html$/,
                 include: /app/,
                 loader: "file?name=[name].[ext]"
-            },
-            {
-                test: /\.css$/,
-                include: /app/,
-                loader: "style!css"
-            },
-            {
-                test: /\.less$/,
-                include: /app/,
-               // loader: ExtractTextPlugin.extract("style!css!less")
-                loader: "style!css!less"
-
-            },
-            {
-                test: /\.json$/,
-                include: /app/,
-                loader: "json-loader"
-            },
+            }
         ]
     }
 };

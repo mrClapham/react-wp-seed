@@ -11,7 +11,7 @@ import Actions from './actions/AppActions.js';
 import Bootstrap from './modules/openfin/openfinBootstrap.js';
 import AppStore from  './stores/AppStore.js';
 
-require  ("./less/styles.less");
+//require  ("./less/styles.less");
 
 var _dataObservable,
     _dataSubscription,
