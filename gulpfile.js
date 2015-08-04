@@ -4,7 +4,7 @@
 var gulp = require('gulp'),
     gutil = require("gulp-util"),
     exec = require("gulp-exec"),
-    webpack = require("webpack"),
+    webpack = require("gulp-webpack"),
     webpackConfig = require('./webpack.config'),
     openfinConfigBuilder = require('openfin-config-builder'),
     openfinLauncher = require('openfin-launcher'),
@@ -98,21 +98,26 @@ gulp.task('server', function () {
     });
 })
 
-
-
-
-gulp.task("webpack", function(callback) {
+gulp.task("webpack", function() {
     // run webpack
-    webpack({
-        // configuration
-    }, function(err, stats) {
-        if(err) throw new gutil.PluginError("webpack", err);
-        gutil.log("[webpack]", stats.toString({
-            // output options
-        }));
-        callback();
-    });
+    return gulp.src('./app/main.js')
+        .pipe(webpack( require('./webpack.config.js') ))
+        .pipe(gulp.dest('dist/'));
 });
+
+
+//gulp.task("webpack", function(callback) {
+//    // run webpack
+//    webpack({
+//        // configuration
+//    }, function(err, stats) {
+//        if(err) throw new gutil.PluginError("webpack", err);
+//        gutil.log("[webpack]", stats.toString({
+//            // output options
+//        }));
+//        callback();
+//    });
+//});
 
 /* THIS IS THE MAIN CALL TO LAUNCH THE OPENFIN APP. */
 
@@ -122,5 +127,5 @@ gulp.task('openfin', function() {
         .then(openfinLaunchServer);
 });
 
-gulp.task('build', ['copyIco', 'copyData', 'webpack']);
+gulp.task('build', ['webpack', 'copyIco', 'copyData']);
 gulp.task('default', ['build', 'openfin']);
