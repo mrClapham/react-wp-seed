@@ -3,7 +3,7 @@
  */
 "use strict";
 import React from 'react';
-import OpenFinComponent from "./openFinComponent";
+// import OpenFinComponent from "./openFinComponent";
 import OpenFinStore from '../../stores/OpenFinStore';
 
 export default  (function(){
@@ -29,7 +29,7 @@ function noOpenFin(){
 
 function bootstrapOpenfin(){
     OpenFinStore.setFin(fin);
-    React.render(<OpenFinComponent />, document.getElementById('openfin-holder'));
+    // React.render(<OpenFinComponent />, document.getElementById('openfin-holder'));
     //OpenFin is ready
     fin.desktop.main(function() {
         //Update the status Indicator.
