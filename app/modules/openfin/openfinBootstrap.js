@@ -2,9 +2,9 @@
  * Created by grahamclapham on 31/07/15.
  */
 "use strict";
-import React from 'react';
-// import OpenFinComponent from "./openFinComponent";
-import OpenFinStore from '../../stores/OpenFinStore';
+var React = require('react');
+var OpenFinComponent = require( "./openFinComponent");
+var OpenFinStore = require( '../../stores/OpenFinStore');
 
 export default  (function(){
     document.addEventListener('DOMContentLoaded', function() {
